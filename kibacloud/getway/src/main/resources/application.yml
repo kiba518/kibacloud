@@ -1,0 +1,37 @@
+
+server:
+  port: 5184
+
+spring:
+  application:
+    name: getway
+  cloud:
+    gateway:
+      discovery:
+        # locator需要打开，不然通过 lb://.. 方式请求不到
+        locator:
+          enabled: true #开启 Gateway 服务注册中心服务发现
+      routes:
+        - id: kiba1 # 路由的id,要求唯一,通常使用应用名
+          uri: lb://eureka-kiba #lb是一个动态路由协议，后面的eureka-kiba 是要跳转的服务名称。
+          predicates:
+            - Path=/kiba1/helloWorld/** # 指定匹配的controller，也可以指定到方法，比如 - Path=/helloWorld/GetName/** 这里kiba1会在下面被过滤掉，即请求的是lb://eureka-kiba/helloworld
+          filters:
+            - StripPrefix=1 #过滤掉一个请求前缀
+            # JwtAuthorization
+        - id: kiba2
+          uri: lb://eureka-kiba2
+          predicates:
+            - Path=/kiba2/helloWorld_kiba2/**
+          filters:
+            - StripPrefix=1
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:5180/eureka #注册中心地址
+#    healthcheck:
+#      enabled: true

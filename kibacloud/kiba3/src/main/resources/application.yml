@@ -1,0 +1,13 @@
+
+# 启动端口
+server:
+  port: 5183
+
+spring:
+  application:
+    name: eureka-kiba3
+# eureka客户端配置，配置要注册的服务查询中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5180/eureka  #注册中心地址

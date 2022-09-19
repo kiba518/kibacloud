@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="kiba3" />
+        <module name="kiba2" />
+        <module name="kibacloud" />
+        <module name="getway" />
+        <module name="eurekaserver" />
+        <module name="kiba" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eurekaserver" options="-parameters" />
+      <module name="getway" options="-parameters" />
+      <module name="kiba" options="-parameters" />
+      <module name="kiba2" options="-parameters" />
+      <module name="kiba3" options="-parameters" />
+    </option>
+  </component>
+</project>
